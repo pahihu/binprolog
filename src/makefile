@@ -81,7 +81,8 @@ most:	minimal step1 step2
 
 
 mac_mt: rclean
-	make CC="gcc -DW64 -DTHREADS=1 -m64 -arch x86_64 -g3 -O3 -Wall -fomit-frame-pointer -fmessage-length=0 -lpthread"
+	# make CC="gcc -DW64 -DTHREADS=1 -m64 -arch x86_64 -g3 -O3 -Wall -fomit-frame-pointer -fmessage-length=0 -lpthread"
+	make CC="gcc -DW64 -DTHREADS=1 -m64 -arch x86_64 -O2 -Wall -fomit-frame-pointer -fmessage-length=0 -lpthread"
 
 linux32_mt: rclean
 	make CC="gcc -O3 -DTHREADS=1 -g -o bp -fomit-frame-pointer -lpthread -lm"
@@ -150,6 +151,7 @@ lib:
 	chmod a+r+x+w *.a
 	$(CP) ru.a bp_lib.a
 	$(AR) bp_lib.a wam.o binpro.o c.o
+	$(CP) bp_lib.a ../lib
 
 
 oclean:

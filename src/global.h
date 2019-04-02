@@ -810,7 +810,7 @@ typedef struct specsyms
 #define BP_ERROR(No,Mes,Arg1,Arg2,Ret) \
 { \
   if(INPUT_INT(0)!=g.err.id) \
-    {warnmes("irrecoverable error in error handler"); bp_halt(No);} \
+    { fprintf(STD_err,"error message: %s\n",Mes);warnmes("irrecoverable error in error handler"); bp_halt(No);} \
   g.err.id=INPUT_INT(No);\
   g.err.mes=INPUT_STRING(Mes);\
   g.err.arg1=(cell)(Arg1);\

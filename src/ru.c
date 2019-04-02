@@ -885,7 +885,8 @@ static void opt_help() {
       (unsigned)sizeof(cell), (unsigned)sizeof(term), (unsigned)SYMBITS);
   (void) fprintf(
       STD_err,
-      "%s %s%ld %s%ld %s%ld %s%ld %s%ld %s%ld %s%ld %s%ld %s%s%s\n\n",
+      "%s %s%ld %s%ld %s%ld %s%ld %s%ld %s%ld %s%ld %s%ld %s%ld%s %s%ld %s%ld %s%ld%s %s%s%s\n\n",
+      /*  -h    -s    -t    -c    -b    -a    -d    -i    -q      -l    -r    -p */
       "\nBinProlog command line:\n\nOPTIONS:\n",
 
       "\n-h ==> HEAP SIZE in Kbytes,  default:",
@@ -896,6 +897,8 @@ static void opt_help() {
       (long)W2Ks(max.TRAIL),
       "\n-c ==> CODE SIZE in Kbytes,  default:",
       (long)W2Ks(max.CODE),
+      "\n-b ==> BLACKBOARD SIZE in Kbytes, dynamic if 0,  default:",
+      (long)W2Ks(max.BOARD),
       "\n-a ==> MAX. ATOMS, give exponent of 2, 2**default=",
       (long)max.ATOMS,
       "\n-d ==> HASH DICT. entries, give exponent of 2,  2**default=",
@@ -904,6 +907,14 @@ static void opt_help() {
       (long)max.SBUF >> 10,
       "\n-q ==> QUIETNESS level, default:",
       (long)OUTPUT_INT(max.QUIET),
+      " (lower means more verbose)",
+      "\n-l ==> LOAD_METHOD:\n  (1=mcompile, 2=scompile, 3=oconsult, 4=dconsult, 5=sconsult): ",
+      (long)OUTPUT_INT(max.LMETH),
+      "\n-r ==> call/update RATIO controlling dynamic recompilation:",
+      (long)OUTPUT_INT(max.DB_RATIO),
+      "\n-p ==> PORT to run on as a daemon if >0, 1 shorthand for default_port, current default:",
+      (long)OUTPUT_INT(max.PORT),
+      ", -p10 forces detection of current IP address",
 
       "\n\nARGUMENTS:\n",
       "\n  STARTUP FILE: *.bp, *.pl, *.wam or\n  GOAL: pred(args),\n  default: ",

@@ -1674,7 +1674,10 @@ no addq0(register stack wam,
   register term H=(term)g.shared[BBoardStk].top;
   register term maxH=(term)g.shared[BBoardStk].margin;
   register cell tail;
-  if(H>maxH) BP_ERROR(BB_OVERFLOW,"BB_OVERFLOW",queue,elem,0)
+  if(H>maxH) {
+    fprintf(STD_err,"BLACKBOARD overflow");
+    BP_ERROR(BB_OVERFLOW,"BB_OVERFLOW",queue,elem,0)
+  }
   QINIT(g.shared[BBoardStk])
   RELOCATE_TO_BB(elem)
   tail=QTAIL;

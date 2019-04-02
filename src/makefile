@@ -82,7 +82,7 @@ most:	minimal step1 step2
 
 mac_mt: rclean
 	# make CC="gcc -DW64 -DTHREADS=1 -m64 -arch x86_64 -g3 -O3 -Wall -fomit-frame-pointer -fmessage-length=0 -lpthread"
-	make CC="gcc -DW64 -DTHREADS=1 -m64 -arch x86_64 -O2 -Wall -fomit-frame-pointer -fmessage-length=0 -lpthread"
+	make CC="gcc -DW64 -DTHREADS=1 -m64 -arch x86_64 -O3 -Wall -fomit-frame-pointer -fmessage-length=0 -lpthread"
 
 linux32_mt: rclean
 	make CC="gcc -O3 -DTHREADS=1 -g -o bp -fomit-frame-pointer -lpthread -lm"
@@ -139,7 +139,7 @@ wam.o:	global.h c_defs.h wam.h wam.c # $$$
 step2 wam.h wam.c:	wam.pro $(PPROGS) # $$$
 #wam.h wam.c:	wam.pro
 #	echo "set_c_threshold(12,60). cmake(wam,prolog). " | ./ru wam.bp
-	./ru wam.bp "cmake(wam,prolog),halt"
+	./ru -b16384 wam.bp "cmake(wam,prolog),halt"
 
 
 ru.a:	$(OTHEROBS) $(SELFOBS)
